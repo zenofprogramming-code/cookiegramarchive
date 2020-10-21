@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  lang ="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th ="http://www.thymeleaf.org">
+    <head>
+        <title>Cookie Order Form</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
+        <!--        <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1 th:text="${message} " class="text-center"></h1>
+            <form action="#" th:action="@{/orderrequest}" th:object = "${orderRequest}">
+                <div class="form-group">
+                    <label for="customerName" class="font-weight-bold">Your Name:</label>
+                    <input type ="text" class="form-control" name="customerName" th:field ="*{customerName}"/> <br/>
+                    <label for="customerEmail" class="font-weight-bold">Your Email:</label>
+                    <input type ="text"  name="customerEmail" class="form-control" th:field ="*{customerEmail}"/> <br/>
+                </div>
+                <div class="form-group">
+                    <label for="recipientName" class="font-weight-bold">Name of the Person who's day you are about to make wonderful</label>
+                    <input type ="text" class="form-control" name ="recipientName" th:field ="*{recipientName}"/> <br/>
+                    <label for="recipientStreetAddress" class="font-weight-bold">Street Address:</label>
+                    <input type ="text" class="form-control" name = "recipientStreetAddress" th:field ="*{recipientStreetAddress}"/> <br/>
+                    <label for="recipientCity" class="font-weight-bold">City:</label>
+                    <input type ="text" class="form-control" name = "recipientCity" th:field ="*{recipientCity}"/> <br/>
+                    <label for="recipientCode" class="font-weight-bold">Postal/Zip Code:</label>
+                    <input type ="text" class="form-control" name ="recipientCode" th:field ="*{recipientCode}"/> <br/>
+                    <label for="recipientCountry" class="font-weight-bold">Country:</label>
+                    <input type ="text" name="recipientCountry" class="form-control" th:field ="*{recipientCountry}"/> <br/>
+                </div><!-- comment -->
+                <div class="form-group">
+                    <label for="cookieMessage" class="font-weight-bold">Message on cookie:</label>
+                    <input type ="text" class="form-control" th:field ="*{cookieMessage}"/> <br/>
+                    <label for="deliveryDate" class="font-weight-bold">Date to deliver:</label>
+                    <input type="date"  th:field ="*{deliveryDate}"/>
+                    <input type ="submit" value ="Order"/>
+                </div>
+            </form>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    </body>
+</html>
