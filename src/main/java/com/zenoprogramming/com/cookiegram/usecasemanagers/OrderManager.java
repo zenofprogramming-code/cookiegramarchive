@@ -6,13 +6,10 @@ import com.zenoprogramming.com.cookiegram.dto.OrderRequest;
 import com.zenoprogramming.com.cookiegram.dto.OrderRequestResponse;
 import com.zenoprogramming.com.cookiegram.dto.PaymentResponse;
 import java.time.LocalDate;
+import java.util.List;
 /**
  * @author Rich Smith at ZenOfProgramming.com
  */
-
-
-
-
 
 public class OrderManager
 {
@@ -99,6 +96,12 @@ public class OrderManager
       OrderPersistanceManager orderPersistanceManager = CookieGram.instanceOfOrderPersistanceManager();
       int numOrdersAlreadyOnDate = orderPersistanceManager.getDaysBakingOrders(orderRequest.getDeliveryDate().minusDays(2)).size();
       return (numOrdersAlreadyOnDate >= maxNumberBakes);
+   }
+
+   public List<CookieOrder> getTodaysBakingOrders ()
+   {
+      OrderPersistanceManager orderPersistanceManager = CookieGram.instanceOfOrderPersistanceManager();
+      return orderPersistanceManager.getDaysBakingOrders(LocalDate.now());
    }
 
 }

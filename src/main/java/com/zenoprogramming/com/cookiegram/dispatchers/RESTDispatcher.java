@@ -1,8 +1,11 @@
 package com.zenoprogramming.com.cookiegram.dispatchers;
+import com.zenoprogramming.com.cookiegram.CookieGram;
+import com.zenoprogramming.com.cookiegram.domainobjects.CookieOrder;
 import com.zenoprogramming.com.cookiegram.dto.OrderRequest;
 import com.zenoprogramming.com.cookiegram.dto.OrderRequestResponse;
-import com.zenoprogramming.com.cookiegram.usecasemanagers.OrderManager;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,13 +34,27 @@ public class RESTDispatcher
    @RequestMapping("/orderrequest")
    public String orderCookie (Model model, @ModelAttribute OrderRequest orderRequest)
    {
-      OrderRequestResponse requestResponse = new OrderManager().createOrder(orderRequest);
+      OrderRequestResponse requestResponse = CookieGram.instanceOfOrderManager().createOrder(orderRequest);
       model.addAttribute("response", requestResponse);
       model.addAttribute("message", requestResponse.getReturnMessageToUser());
       return requestResponse.getHtmlPage();
-
    }
 
+   @RequestMapping("/viewtodaysbaking")
+   public String viewTodaysBakingOrders (Model model)
+   {
+      List<CookieOrder> orders = CookieGram.instanceOfOrderManager().getTodaysBakingOrders();
+      List<String> ordersAsStrings = new ArrayList<String>();
+      model.addAttribute("ordersAsStrings", orders);
+      return "todaysbakingorders.html";
+   }
 
+   @RequestMapping("/completeBake")
+   public String completeBake (Model model, @ModelAttribute CookieOrder order)
+   {
+
+      System.out.println("Yay!!! " + order.getOrderNumber());
+      return "/completeBake";
+   }
 
 }

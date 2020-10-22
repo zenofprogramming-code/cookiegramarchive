@@ -14,6 +14,15 @@ public class OrderPersistanceDispatcherStub implements OrderPersistanceManager
    private List<CookieOrder> orders = new ArrayList<CookieOrder>();
    private static int nextOrderNumber;
 
+   public OrderPersistanceDispatcherStub ()
+   {
+      System.out.println("In constructor of OrderPersistaceDispatcherStub - generating test orders");
+      saveOrderToRepository(new CookieOrder(1, "Customer 1", "Customer email 1", "Recipient 1", "Recipient Street Address 1",
+                                            "Recipient City 1", "Recipient Code 1", "Recipient Country 1", "Happy Birthday", LocalDate.now(), 14.99, 4.99, 5.99, 55.55));
+
+   }
+
+
    @Override
    public boolean saveOrderToRepository (CookieOrder cookieOrder)
    {

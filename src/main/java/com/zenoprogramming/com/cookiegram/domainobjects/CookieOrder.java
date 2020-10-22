@@ -1,11 +1,13 @@
 package com.zenoprogramming.com.cookiegram.domainobjects;
 import java.time.LocalDate;
-import lombok.Data;
+import lombok.*;
 /**
  * @author Rich Smith at ZenOfProgramming.com
  */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CookieOrder
 {
    private int orderNumber;

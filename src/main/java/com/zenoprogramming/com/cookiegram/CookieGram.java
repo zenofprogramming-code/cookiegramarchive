@@ -4,6 +4,7 @@ import com.zenoprogramming.com.cookiegram.dispatchers.OrderPersistanceDispatcher
 import com.zenoprogramming.com.cookiegram.dispatchers.PaymentDispatcherStub;
 import com.zenoprogramming.com.cookiegram.dispatchers.SettingsPersistanceDispatcherStub;
 import com.zenoprogramming.com.cookiegram.dispatchers.ShippingDispatcherStub;
+import com.zenoprogramming.com.cookiegram.usecasemanagers.OrderManager;
 import com.zenoprogramming.com.cookiegram.usecasemanagers.OrderPersistanceManager;
 import com.zenoprogramming.com.cookiegram.usecasemanagers.PaymentManager;
 import com.zenoprogramming.com.cookiegram.usecasemanagers.SettingsPersistanceManager;
@@ -16,8 +17,9 @@ public class CookieGram
 {
    static SettingsPersistanceManager settingsPersistanceManager;
    static OrderPersistanceManager orderPersistanceManager;
-   static ShippingManager instanceOfShippingManager;
+   static ShippingManager shippingManager;
    static PaymentManager paymentManager;
+   static OrderManager orderManager;
 
    public static void main (String[] args)
    {
@@ -47,7 +49,7 @@ public class CookieGram
    {
       System.out.println("injecting SettingsPersistanceDispatcher");
       if (settingsPersistanceManager == null) {
-         settingsPersistanceManager = new SettingsPersistanceDispatcherStub();;
+         settingsPersistanceManager = new SettingsPersistanceDispatcherStub();
       }
       return settingsPersistanceManager;
    }
@@ -55,9 +57,18 @@ public class CookieGram
    public static ShippingManager instanceOfShippingManager ()
    {
       System.out.println("injecting ShippingDispatcherStub");
-      if (instanceOfShippingManager == null) {
-         instanceOfShippingManager = new ShippingDispatcherStub();;
+      if (shippingManager == null) {
+         shippingManager = new ShippingDispatcherStub();
       }
-      return instanceOfShippingManager;
+      return shippingManager;
    }
+
+   public static OrderManager instanceOfOrderManager ()
+   {
+      if (orderManager == null) {
+         orderManager = new OrderManager();
+      }
+      return orderManager;
+   }
+
 }
