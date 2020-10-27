@@ -20,9 +20,21 @@ private MockMvc mockMvc;
       * Tests that ordercookieform will load
       */
 @Test
-public void testOrderCookieUseCase () throws Exception
+public void testOrderCookiePageLoad () throws Exception
    {
       mockMvc.perform(MockMvcRequestBuilders.get("/ordercookieform")).andExpect(status().isOk());
    }
+
+
+/**
+ * Note the mistake in this page...just a test of the test
+ * @throws Exception 
+ */
+@Test
+public void testOrderCookieDoesntLoadIfInvalid () throws Exception
+   {
+      mockMvc.perform(MockMvcRequestBuilders.get("/odercookieform")).andExpect(status().isNotFound());
+   }
+
 
 }
