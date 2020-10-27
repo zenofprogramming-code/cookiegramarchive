@@ -17,9 +17,12 @@ public class OrderPersistanceDispatcherStub implements OrderPersistanceManager
    public OrderPersistanceDispatcherStub ()
    {
       System.out.println("In constructor of OrderPersistaceDispatcherStub - generating test orders");
-      saveOrderToRepository(new CookieOrder(1, "Customer 1", "Customer email 1", "Recipient 1", "Recipient Street Address 1",
-                                            "Recipient City 1", "Recipient Code 1", "Recipient Country 1", "Happy Birthday", LocalDate.now(), 14.99, 4.99, 5.99, 55.55));
-
+      saveOrderToRepository(new CookieOrder(1, "Liz", "Liz@PRE.com", "Rich", "123 Happy Street",
+                                            "NOTL", "LZ41E4", "Canada", "Sorry for being so mean and making fun of your colours!", LocalDate.now(), 14.99, 4.99, 5.99, 55.55));
+      saveOrderToRepository(new CookieOrder(2, "Rich", "Rich@PRE.com", "Liz", "123 Mean Street", "Virgil", "LZ41E4", "Canada",
+                                            "I'm really glad you're teaching Capsone", LocalDate.now(), 14.99, 4.99, 5.99, 55.55));
+      saveOrderToRepository(new CookieOrder(3, "Rich & Liz", "Rich@PRE.com", "Mark", "123 BigBoss Street", "Welland", "LZ41E4", "Canada",
+                                            "We want a raise", LocalDate.now(), 14.99, 4.99, 5.99, 55.55));
    }
 
 
@@ -71,6 +74,21 @@ public class OrderPersistanceDispatcherStub implements OrderPersistanceManager
    public List<CookieOrder> getDaysShippingOrders (LocalDate date)
    {
       throw new UnsupportedOperationException("Not supported yet.");
+   }
+
+   @Override
+   public List<CookieOrder> getNextSevenDaysBakingOrders (LocalDate date)
+   {
+      List<CookieOrder> todaysOrders = new ArrayList<CookieOrder>();
+      for (CookieOrder order : orders) {
+         if (order.getShipDate().isAfter(date) && order.getShipDate().isBefore(date.plusDays(7))) {
+            todaysOrders.add(order);
+         }
+         if (order.getShipDate().equals(date)) {
+            todaysOrders.add(order);
+         }
+      }
+      return todaysOrders;
    }
 
 

@@ -21,6 +21,8 @@ public interface OrderPersistanceManager
 
    List<CookieOrder> getDaysBakingOrders (LocalDate date);
 
+   List<CookieOrder> getNextSevenDaysBakingOrders (LocalDate date);
+
    List<CookieOrder> getDaysShippingOrders (LocalDate date);
 
    int getNextOrderNumber ();

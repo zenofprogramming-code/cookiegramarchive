@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * @author Rich Smith at ZenOfProgramming.com
@@ -23,7 +25,13 @@ public class RESTDispatcher
       return "Yay!!! Hello CookieGram!";
    }
 
-   @RequestMapping("/ordercookieform")
+   @GetMapping("/")
+   public String landingPage ()
+   {
+      return "landingpage";
+   }
+
+   @RequestMapping("/ordercookie")
    public String orderCookieForm (Model model)
    {
       model.addAttribute(new OrderRequest("", "", "", "", "", "", "", "", LocalDate.now()));
@@ -40,21 +48,35 @@ public class RESTDispatcher
       return requestResponse.getHtmlPage();
    }
 
-   @RequestMapping("/viewtodaysbaking")
-   public String viewTodaysBakingOrders (Model model)
+   @RequestMapping("/viewnextsevendaysbaking")
+   public String viewNextSevenDaysBakingOrders (Model model)
    {
-      List<CookieOrder> orders = CookieGram.instanceOfOrderManager().getTodaysBakingOrders();
-      List<String> ordersAsStrings = new ArrayList<String>();
-      model.addAttribute("ordersAsStrings", orders);
-      return "todaysbakingorders.html";
+      List<CookieOrder> orders = CookieGram.instanceOfOrderManager().getnextSevenDaysBakingOrders();
+//      List<String> ordersAsStrings = new ArrayList<String>();
+      List<String> status = new ArrayList<String>();
+      status.add("Not Paid");
+      status.add("Pending");
+      status.add("Baked");
+      status.add("Delivered");
+      model.addAttribute("status", status);
+      model.addAttribute("orders", orders);
+      return "bakingorders.html";
    }
 
-   @RequestMapping("/completeBake")
-   public String completeBake (Model model, @ModelAttribute CookieOrder order)
-   {
+//   @RequestMapping("/completeBake")
+//   public String completeBake (Model model, @ModelAttribute CookieOrder order)
+//   {
+//      System.out.println("Yay!!! " + order.toString());
+//      return "redirect:/viewtodaysbaking";
+//   }
 
-      System.out.println("Yay!!! " + order.getOrderNumber());
-      return "/completeBake";
+
+   @GetMapping(value = "/completeBake/{orderId}")
+   public String getTestData (@PathVariable int orderId)
+   {
+      System.out.println("Yay!");
+      System.out.println(orderId);
+      return "redirect:/viewtodaysbaking";
    }
 
 }

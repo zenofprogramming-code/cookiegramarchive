@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html  lang ="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th ="http://www.thymeleaf.org">
     <head>
         <title>Cookie Order Form</title>
@@ -13,11 +9,17 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     </head>
     <body>
+        <h1 class="jumbotron">Landing Page</h1>
         <div class="container">
-            Todays Baking Orders
-        </div>
-        <div>[[${order.recipientName}]]
+            This is the page that the customer will land on and will be completed during the Advertising use case.
 
+            <form action="#" th:action="@{/ordercookie}" >
+                <input type ="submit" value ="Order a cookie"/>
+            </form>
+
+            <form action="#" th:action="@{/viewnextsevendaysbaking}" >
+                <input type ="submit" value ="View next seven days baking"/>
+            </form>
 
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
