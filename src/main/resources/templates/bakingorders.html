@@ -1,16 +1,9 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html  lang ="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th ="http://www.thymeleaf.org">
     <head>
         <title>Cookie Order Form</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
-        <!--        <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <!--/*/ <th:block th:include="fragments/fragments.html :: headerfiles"></th:block> /*/-->
     </head>
     <body >
         <div class="w-75 p-3" >
@@ -26,8 +19,8 @@ and open the template in the editor.
                             <th> Recipient </th>
                             <th> Message </th>
                             <th> Ship Date </th>
-                            <th> Action </th>
-                            <th> dropdown </th>
+                            <th> Status </th>
+                            <th> Update </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,12 +29,13 @@ and open the template in the editor.
                             <td><span th:text="${order.recipientName}"> recipient </span></td>
                             <td><span th:text="${order.cookieMessage}"> message </span></td>
                             <td><span th:text="${order.shipDate}"> date </span></td>
-                            <td><a th:href="@{'/completeBake/'+${order.orderNumber}}"> message </a></td>
                             <td><select th:field="*{status}">
                                     <option th:each="selection : ${status}" th:value="${selection}" th:text="${selection}"></option>
-                                </select>     
-
+                                </select>        
                             </td>
+                            <td><a class="btn btn-primary" th:href="@{'/completeBake/'+${order.orderNumber}}"> Update Status </a></td>
+
+
                         </tr>
                     </tbody>
                 </table> 
@@ -49,9 +43,7 @@ and open the template in the editor.
                     <input type ="submit" value ="Return to Landing Page"/>
                 </form>
             </div>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+            <!--<a th:replace ="fragments/fragments.html :: bootstrapstuff "></a>-->
         </div>
     </body>
 </html>

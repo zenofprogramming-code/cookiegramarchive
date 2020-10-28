@@ -12,6 +12,15 @@ import com.zenoprogramming.com.cookiegram.usecasemanagers.ShippingManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/*
+ * TODO - add java docs
+ * refactor baking views etc
+ * clean up code
+ * clean up templates
+ * add template fragments
+ *
+ */
+
 @SpringBootApplication
 public class CookieGram
 {
